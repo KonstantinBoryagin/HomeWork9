@@ -17,10 +17,10 @@ public class QuizGenerator {
     }
 
     /**
-     * Метод для пошагового выполнения викторины
-     * {@link #askQuestions()}
-     * {@link #resultForQuiz()}
-     * {@link #displayAnswerStatistic()}
+     * Метод для пошагового выполнения викторины с помощью вызовов
+     * {@link #askQuestions()},
+     * {@link #resultForQuiz()},
+     * {@link #displayAnswerStatistic()},
      * {@link #resetCounters()}
      */
     public void quiz() {
@@ -33,14 +33,14 @@ public class QuizGenerator {
     /**
      * Метод для формирования массива из вопросов,
      * по-одному передает вопросы в {@link #qenerateQuestion(Question question)},
-     * инкриминирует счетчик общего количества вопросов {@link #countOfQuestions}
+     * присваиваем значение счетчику общего количества вопросов {@link #countOfQuestions}
      */
     private void askQuestions() {
         Question[] questionsArray = Question.values();
+        countOfQuestions = questionsArray.length;
         for (int i = 0; i < questionsArray.length; i++) {
             Question question = Question.values()[i];
             qenerateQuestion(question);
-            countOfQuestions++;
         }
     }
 
@@ -99,7 +99,7 @@ public class QuizGenerator {
     }
 
     /**
-     * Обнуление счетчика правильных ответов и ArrayList со статистикой вызывая
+     * Обнуляет счетчик правильных ответов и ArrayList со статистикой вызывая
      * {@link UserAnswersProcessing#clearArrayListWithPlayerAnswers()} и
      * {@link UserAnswersProcessing#resetCountOfCorrect()}
      */
@@ -114,4 +114,5 @@ public class QuizGenerator {
     public static int getCountOfQuestions() {
         return countOfQuestions;
     }
+
 }

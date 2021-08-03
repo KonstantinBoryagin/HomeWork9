@@ -34,10 +34,9 @@ public class QuizService {
      * @return % правильных ответов
      */
     private int calculatePercentOfTrueAnswers() {
-        int countOfAllAnswers = QuizGenerator.getCountOfQuestions();
-        int countOfCorrectAnswers = userAnswersProcessing.getCountOfCorrect();
-        int percentOfTruAnswers = (countOfCorrectAnswers * 100) / countOfAllAnswers;
-        return percentOfTruAnswers;
+        int countOfAllQuestions = QuizGenerator.getCountOfQuestions();
+        int countOfCorrectAnswers = UserAnswersProcessing.getCountOfCorrect();
+        return (countOfCorrectAnswers * 100 / countOfAllQuestions);
     }
 
 
