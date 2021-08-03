@@ -12,8 +12,8 @@ public class UserAnswersProcessing {
 
 
     /**
-     *  Проверка на правильность ответа данного пользователем и дальнейшая его запись в ArrayList с ответами
-     *  инкрементирует счетчик правильных ответов {@link #countOfCorrect}
+     *  Проверка на правильность ответа данного пользователем и дальнейшая его запись в ArrayList с ответами.
+     *  Инкрементирует счетчик правильных ответов {@link #countOfCorrect}
      * @param answer - вариант ответа введенный пользователем
      * @param question - вопрос
      */
@@ -36,15 +36,25 @@ public class UserAnswersProcessing {
         }
     }
 
+    /**
+     * Получает значение поля {@link #countOfCorrect}
+     * @return Значение количества правильных ответов пользователя
+     */
     public int getCountOfCorrect() {
         return countOfCorrect;
     }
 
 
+    /**
+     * Очищаем ArrayList {@link #answers} содержащий ответы пользователя
+     */
     public void clearArrayListWithPlayerAnswers() {
         answers.clear();
     }
 
+    /**
+     * Обнуляем поле {@link #countOfCorrect} содержащее количество правильных ответов пользователя
+     */
     public void resetCountOfCorrect() {
         countOfCorrect = 0;
     }

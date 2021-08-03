@@ -33,7 +33,7 @@ public class QuizGenerator {
     /**
      * Метод для формирования массива из вопросов,
      * по-одному передает вопросы в {@link #qenerateQuestion(Question question)},
-     * инкрементирует счетчик общего количества вопросов {@link #countOfQuestions}
+     * инкриминирует счетчик общего количества вопросов {@link #countOfQuestions}
      */
     private void askQuestions() {
         Question[] questionsArray = Question.values();

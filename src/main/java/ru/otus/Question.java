@@ -9,13 +9,13 @@ public enum Question {
     QUESTION_TWO (4, "Какой из советских фильмов получил Оскар?",
             new String[] {"Кин-Дза-Дза","Сталкер", "Солярис", "Москва слезам не верит"}),
     QUESTION_THREE (1, "Чем является Milky Way",
-            new String[] {"Галактика", "Скопление звёзд", "Парад планет", "Солнечная система", "Шоколодка"});
+            new String[] {"Галактика", "Скопление звёзд", "Парад планет", "Солнечная система", "Шоколадка"});
 
-    /** Поле праввильный ответ*/
+    /** Поле - правильный ответ*/
     private final int correctAnswer;
-    /** Поле вопрос*/
+    /** Поле - вопрос*/
     private final String question;
-    /** Поле варианты ответов*/
+    /** Поле - варианты ответов*/
     private final String[] answerOptions;
 
     /**
@@ -47,6 +47,7 @@ public enum Question {
     }
 
     /**
+     * Метод получает значение размера массива {@link #answerOptions}
      * @return возвращает размер массива с вариантами ответов
      */
     public int answerOptionsLength() {
@@ -54,14 +55,16 @@ public enum Question {
     }
 
     /**
-     * @return возвращает правильный ответ на вопрос
+     * Получает значение поля {@link #correctAnswer}
+     * @return правильный ответ на вопрос
      */
     public int getCorrectAnswer() {
         return correctAnswer;
     }
 
     /**
-     * @return возвращает массив с вариантами ответа на вопрос
+     * Получает массив вариантов ответов {@link #answerOptions}
+     * @return массив с вариантами ответа на вопрос
      */
     public String[] getAnswerOptions() {
         return answerOptions;
