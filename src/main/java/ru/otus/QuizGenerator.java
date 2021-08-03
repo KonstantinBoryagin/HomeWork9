@@ -6,6 +6,7 @@ import java.util.Scanner;
  * Класс создания Викторины
  */
 public class QuizGenerator {
+    /** Поле - общее количество вопросов заданных пользователю*/
     private static int countOfQuestions;
     private final Scanner input = new Scanner(System.in);
     private final UserAnswersProcessing userAnswersProcessing = new UserAnswersProcessing();
@@ -17,6 +18,10 @@ public class QuizGenerator {
 
     /**
      * Метод для пошагового выполнения викторины
+     * {@link #askQuestions()}
+     * {@link #resultForQuiz()}
+     * {@link #displayAnswerStatistic()}
+     * {@link #resetCounters()}
      */
     public void quiz() {
         askQuestions();
@@ -26,7 +31,9 @@ public class QuizGenerator {
     }
 
     /**
-     * Метод для формирования массива из вопросов
+     * Метод для формирования массива из вопросов,
+     * по-одному передает вопросы в {@link #qenerateQuestion(Question question)},
+     * инкрементирует счетчик общего количества вопросов {@link #countOfQuestions}
      */
     private void askQuestions() {
         Question[] questionsArray = Question.values();
@@ -37,6 +44,11 @@ public class QuizGenerator {
         }
     }
 
+    /**
+     * вывод вопроса на экран
+     * вызывает {@link #checkPlayerAnswers(Question quesyion)} для обработки ответа пользователя
+     * @param question - объект класса Question содержащий вопрос
+     */
     private void qenerateQuestion(Question question) {
         question.printQuestion();
         System.out.print("Введите номер ответа - ");
@@ -44,6 +56,13 @@ public class QuizGenerator {
         checkPlayerAnswers(question);
     }
 
+    /**
+     * Проверка ответа пользователя на наличие данного варианта в ответах,
+     * если есть то вызывается {@link UserAnswersProcessing#saveAnswers(int answer, Question question)}
+     * для сохранения ответа в ArrayList
+     *
+     * @param question - объект класса Question содержащий вопрос
+     */
     private void checkPlayerAnswers(Question question) {
         while (true) {
             if (input.hasNextInt()) {
@@ -60,23 +79,38 @@ public class QuizGenerator {
         }
     }
 
+    /**
+     * Вызов {@link QuizService#resultOfGame()} для отображения количества верных ответов
+     */
     private void resultForQuiz() {
         System.out.println("\n Конец!");
         quizService.resultOfGame();
     }
 
+    /**
+     * Запрос на ввод с консоли "S" для отображения правильных и ошибочных ответов (с указанием верных)
+     * с помощью вызова {@link UserAnswersProcessing#outputStatisticOfResponses()}
+     */
     private void displayAnswerStatistic() {
         System.out.println("\n Введите \"S\" для отображения статистики, либо что угодно для продолжения");
         if (input.next().equalsIgnoreCase("S")){
-            userAnswersProcessing.checkAnswers();
+            userAnswersProcessing.outputStatisticOfResponses();
         }
     }
 
+    /**
+     * Обнуление счетчика правильных ответов и ArrayList со статистикой вызывая
+     * {@link UserAnswersProcessing#clearArrayListWithPlayerAnswers()} и
+     * {@link UserAnswersProcessing#resetCountOfCorrect()}
+     */
     private void resetCounters() {
         userAnswersProcessing.clearArrayListWithPlayerAnswers();
         userAnswersProcessing.resetCountOfCorrect();
     }
 
+    /**
+     * @return возвращает общее количество вопросов заданных пользователю
+     */
     public static int getCountOfQuestions() {
         return countOfQuestions;
     }

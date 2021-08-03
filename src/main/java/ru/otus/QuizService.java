@@ -5,6 +5,9 @@ public class QuizService {
     //private QuizGenerator quizGenerator = new QuizGenerator();
     private UserAnswersProcessing userAnswersProcessing = new UserAnswersProcessing();
 
+    /**
+     * Вывод количества верных ответов и % успешности в векторине
+     */
     public void resultOfGame() {
         int countOfCorrect = userAnswersProcessing.getCountOfCorrect();
         System.out.println("\nИтого верных ответов - " + countOfCorrect);
@@ -23,6 +26,9 @@ public class QuizService {
         }
     }
 
+    /**
+     * @return возвращает % правильных ответов за игру
+     */
     private int calculatePercentOfTrueAnswers() {
         int countOfAllAnswers = QuizGenerator.getCountOfQuestions();
         int countOfCorrectAnswers = userAnswersProcessing.getCountOfCorrect();
@@ -31,6 +37,10 @@ public class QuizService {
     }
 
 
+    /**
+     * Присваивает переменной значение имени пользователя полученное в начале викторины
+     * @param playerName - имя пользователя
+     */
     public void setPlayerName(String playerName) {
         this.playerName = playerName;
     }

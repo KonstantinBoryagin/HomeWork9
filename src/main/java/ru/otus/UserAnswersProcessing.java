@@ -11,6 +11,12 @@ public class UserAnswersProcessing {
     private ArrayList<String> answers = new ArrayList<>();
 
 
+    /**
+     *  Проверка на правильность ответа данного пользователем и дальнейшая его запись в ArrayList с ответами
+     *  инкрементирует счетчик правильных ответов {@link #countOfCorrect}
+     * @param answer - вариант ответа введенный пользователем
+     * @param question - вопрос
+     */
     public void saveAnswers(int answer, Question question) {
         if (answer == question.getCorrectAnswer()) {
             answers.add("правильно - " + "\"" + question.getAnswerOptions()[question.getCorrectAnswer() - 1] + "\"");
@@ -20,7 +26,10 @@ public class UserAnswersProcessing {
         }
     }
 
-    public void checkAnswers() {
+    /**
+     * Вывод в консоль ArrayList с правильными и ошибочными ответами пользователями (с указанием верных)
+     */
+    public void outputStatisticOfResponses() {
         System.out.println("");
         for (int i = 0; i < answers.size(); i++) {
             System.out.println((i + 1) + "-й вопрос: " + answers.get(i));
