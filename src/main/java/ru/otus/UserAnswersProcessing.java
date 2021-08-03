@@ -3,22 +3,20 @@ package ru.otus;
 import java.util.ArrayList;
 
 /**
- *
+ *Класс для обработки ответов пользователя
+ * и создания ArrayList ответов
  */
 public class UserAnswersProcessing {
     private static int countOfCorrect;
     private ArrayList<String> answers = new ArrayList<>();
 
-    /**
-     * @param answer
-     * @param question
-     */
+
     public void saveAnswers(int answer, Question question) {
-        if (answer == question.getCorrect()) {
-            answers.add("правильно - " + "\"" + question.getAnswerOptions()[question.getCorrect() - 1] + "\"");
+        if (answer == question.getCorrectAnswer()) {
+            answers.add("правильно - " + "\"" + question.getAnswerOptions()[question.getCorrectAnswer() - 1] + "\"");
             countOfCorrect++;
         } else {
-            answers.add("ошибка. Правильный ответ - " + "\"" + question.getAnswerOptions()[question.getCorrect() - 1] + "\"");
+            answers.add("ошибка. Правильный ответ - " + "\"" + question.getAnswerOptions()[question.getCorrectAnswer() - 1] + "\"");
         }
     }
 

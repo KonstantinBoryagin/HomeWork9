@@ -2,6 +2,9 @@ package ru.otus;
 
 import java.util.Scanner;
 
+/**
+ * Класс создания Викторины
+ */
 public class QuizGenerator {
     private static int countOfQuestions;
     private final Scanner input = new Scanner(System.in);
@@ -12,6 +15,9 @@ public class QuizGenerator {
         return input;
     }
 
+    /**
+     * Метод для пошагового выполнения викторины
+     */
     public void quiz() {
         askQuestions();
         resultForQuiz();
@@ -19,6 +25,9 @@ public class QuizGenerator {
         resetCounters();
     }
 
+    /**
+     * Метод для формирования массива из вопросов
+     */
     private void askQuestions() {
         Question[] questionsArray = Question.values();
         for (int i = 0; i < questionsArray.length; i++) {

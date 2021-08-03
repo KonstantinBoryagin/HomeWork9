@@ -1,12 +1,15 @@
 package ru.otus;
 
+
+/**
+ * "Викторина"
+ * @author Konstantin Boryagin
+ * @version 1.0
+ */
 public class Quiz {
     private static QuizGenerator quizGenerator;
     private static QuizService quizService;
 
-    /**
-     * @author Konstantin Boryagin
-     */
     private static void init(){
         quizGenerator = new QuizGenerator();
         quizService = new QuizService();
@@ -15,6 +18,7 @@ public class Quiz {
 
     public static void main(String[] args) {
 
+        /**Инициализация объектов классов */
         init();
 
         System.out.println("Добро пожаловать! Введите Ваше имя что бы начать!");
