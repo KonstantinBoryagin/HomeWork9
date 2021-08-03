@@ -1,12 +1,15 @@
 package ru.otus;
 
+/**
+ * Вспомогательный класс со свойством <b>playerName</b>
+ */
 public class QuizService {
     private static String playerName;
     //private QuizGenerator quizGenerator = new QuizGenerator();
     private UserAnswersProcessing userAnswersProcessing = new UserAnswersProcessing();
 
     /**
-     * Вывод количества верных ответов и % успешности в векторине
+     * Вывод количества верных ответов и % успешности в викторине
      */
     public void resultOfGame() {
         int countOfCorrect = userAnswersProcessing.getCountOfCorrect();
@@ -27,7 +30,8 @@ public class QuizService {
     }
 
     /**
-     * @return возвращает % правильных ответов за игру
+     * Возвращает % правильных ответов в викторине
+     * @return % правильных ответов
      */
     private int calculatePercentOfTrueAnswers() {
         int countOfAllAnswers = QuizGenerator.getCountOfQuestions();

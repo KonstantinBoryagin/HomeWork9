@@ -13,7 +13,7 @@ public class UserAnswersProcessing {
 
     /**
      *  Проверка на правильность ответа данного пользователем и дальнейшая его запись в ArrayList с ответами.
-     *  Инкрементирует счетчик правильных ответов {@link #countOfCorrect}
+     *  Инкриминирует счетчик правильных ответов {@link #countOfCorrect}
      * @param answer - вариант ответа введенный пользователем
      * @param question - вопрос
      */
