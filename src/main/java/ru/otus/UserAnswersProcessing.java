@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class UserAnswersProcessing {
     private int countOfCorrectAnswers;
-    private ArrayList<String> answers = new ArrayList<>();
+    private final ArrayList<String> answers = new ArrayList<>();
 
 
     /**

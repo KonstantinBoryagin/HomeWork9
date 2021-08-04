@@ -2,7 +2,7 @@ package ru.otus;
 
 /**
  * Класс автоматически формирует вопросы получаемые из перечисления
- * @see Question#Question(int correctAnswer, String question, String[] answerOptions) ; 
+ * @see Question#Question(int correctAnswer, String question, String[] answerOptions)  ;
  */
 public class QuestionGenerator {
 
@@ -10,8 +10,8 @@ public class QuestionGenerator {
     private int countOfQuestions;
 
     /**
-     * Формирует массив всех вопросов для викторины
-     *  присваиваем значение счетчику общего количества вопросов {@link #countOfQuestions}
+     * Формирует массив всех вопросов для викторины,
+     * присваиваем значение счетчику общего количества вопросов {@link #countOfQuestions}
      * @return - массив всех вопросов с вариантами ответов
      */
     public Question[] formArrayOfQuestions() {
