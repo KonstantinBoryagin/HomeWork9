@@ -6,11 +6,12 @@ import java.util.Scanner;
  * Класс создания Викторины
  */
 public class QuizGenerator {
-    /** Поле - общее количество вопросов заданных пользователю*/
-    private static int countOfQuestions;
+    /** Поле - общее количество вопросов заданных пользователю */
+    private int countOfQuestions;
+    /** Поле - имя пользователя заданное {@link #} */               //<-----------------------------------
+    private String playerName;
     private final Scanner input = new Scanner(System.in);
     private final UserAnswersProcessing userAnswersProcessing = new UserAnswersProcessing();
-    private final QuizService quizService = new QuizService();
 
     public Scanner getInput() {
         return input;
@@ -80,11 +81,34 @@ public class QuizGenerator {
     }
 
     /**
-     * Вызов {@link QuizService#resultOfGame()} для отображения количества верных ответов
+     * Вывод количества верных ответов и % успешности в викторине
      */
     private void resultForQuiz() {
         System.out.println("\n Конец!");
-        quizService.resultOfGame();
+        int countOfCorrect = userAnswersProcessing.getCountOfCorrect();
+        System.out.println("\nИтого верных ответов - " + countOfCorrect);
+        switch (countOfCorrect) {
+            case 3:
+                System.out.println(playerName + ", отлично, на " + calculatePercentOfTrueAnswers() + "% правильно");
+                break;
+            case 2:
+                System.out.println(playerName + ", хорошо, на " + calculatePercentOfTrueAnswers() + "% правильно");
+                break;
+            case 1:
+                System.out.println(playerName + ", ужасно, на " + calculatePercentOfTrueAnswers() + "% правильно");
+                break;
+            default:
+                System.out.println(playerName + ", не отчаивайтесь");
+        }
+    }
+    /**
+     * Возвращает % правильных ответов в викторине
+     * @return % правильных ответов
+     */
+    private int calculatePercentOfTrueAnswers() {
+        int countOfAllQuestions = getCountOfQuestions();
+        int countOfCorrectAnswers = UserAnswersProcessing.getCountOfCorrect();
+        return (countOfCorrectAnswers * 100 / countOfAllQuestions);
     }
 
     /**
@@ -111,8 +135,16 @@ public class QuizGenerator {
     /**
      * @return возвращает общее количество вопросов заданных пользователю
      */
-    public static int getCountOfQuestions() {
+    private int getCountOfQuestions() {
         return countOfQuestions;
+    }
+
+    /**
+     * Присваивает переменной значение имени пользователя полученное в начале викторины
+     * @param playerName - имя пользователя
+     */
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
     }
 
 }

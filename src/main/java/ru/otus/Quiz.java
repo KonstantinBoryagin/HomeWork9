@@ -7,11 +7,9 @@ package ru.otus;
  */
 public class Quiz {
     private static QuizGenerator quizGenerator;
-    private static QuizService quizService;
 
     private static void init(){
         quizGenerator = new QuizGenerator();
-        quizService = new QuizService();
     }
 
 
@@ -22,8 +20,8 @@ public class Quiz {
 
         System.out.println("Добро пожаловать! Введите Ваше имя что бы начать!");
 
-        /** Получаем и записываем имя пользователя в {@link QuizService#setPlayerName(String name)} */
-        quizService.setPlayerName(quizGenerator.getInput().nextLine());
+        /** Получаем и записываем имя пользователя в {@link QuizGenerator#setPlayerName(String name)} */
+        quizGenerator.setPlayerName(quizGenerator.getInput().nextLine());
 
         /**
          * Вызываем метод пошагового выполнения викторины {@link QuizGenerator#quiz()}
