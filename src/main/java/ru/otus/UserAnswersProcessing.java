@@ -6,20 +6,20 @@ import java.util.ArrayList;
  *Класс для обработки ответов пользователя и создания ArrayList ответов
  */
 public class UserAnswersProcessing {
-    private int countOfCorrect;
+    private int countOfCorrectAnswers;
     private ArrayList<String> answers = new ArrayList<>();
 
 
     /**
      *  Проверка на правильность ответа данного пользователем и дальнейшая его запись в ArrayList с ответами.
-     *  Инкриминирует счетчик правильных ответов {@link #countOfCorrect}
+     *  Инкриминирует счетчик правильных ответов {@link #countOfCorrectAnswers}
      * @param answer - вариант ответа введенный пользователем
      * @param question - вопрос
      */
     public void saveAnswers(int answer, Question question) {
         if (answer == question.getCorrectAnswer()) {
             answers.add("правильно - " + "\"" + question.getAnswerOptions()[question.getCorrectAnswer() - 1] + "\"");
-            countOfCorrect++;
+            countOfCorrectAnswers++;
         } else {
             answers.add("ошибка. Правильный ответ - " + "\"" + question.getAnswerOptions()[question.getCorrectAnswer() - 1] + "\"");
         }
@@ -36,11 +36,11 @@ public class UserAnswersProcessing {
     }
 
     /**
-     * Получает значение поля {@link #countOfCorrect}
+     * Получает значение поля {@link #countOfCorrectAnswers}
      * @return Значение количества правильных ответов пользователя
      */
-    public int getCountOfCorrect() {
-        return countOfCorrect;
+    public int getCountOfCorrectAnswers() {
+        return countOfCorrectAnswers;
     }
 
 
@@ -52,9 +52,9 @@ public class UserAnswersProcessing {
     }
 
     /**
-     * Обнуляем поле {@link #countOfCorrect} содержащее количество правильных ответов пользователя
+     * Обнуляем поле {@link #countOfCorrectAnswers} содержащее количество правильных ответов пользователя
      */
     public void resetCountOfCorrect() {
-        countOfCorrect = 0;
+        countOfCorrectAnswers = 0;
     }
 }

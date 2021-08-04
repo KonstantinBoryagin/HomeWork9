@@ -24,7 +24,7 @@ public class Quiz {
         while (true) {
             quizGenerator.quiz();
 
-            System.out.println("\n Что бы выйти введите \"Q\" или что либо другое для повтора");
+            System.out.println("\n Что бы выйти введите \"Q\" или что либо другое для следующей попытки");
 
             if (quizGenerator.getInput().next().equalsIgnoreCase("q")) {
                 return;

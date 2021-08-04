@@ -6,12 +6,12 @@ import java.util.Scanner;
  * Класс создания Викторины
  */
 public class QuizGenerator {
-    /** Поле - общее количество вопросов заданных пользователю */
-    private int countOfQuestions;
+
     /** Поле - имя пользователя, задется в методе {@link #setPlayerName(String)} */
     private String playerName;
     private final Scanner input = new Scanner(System.in);
     private final UserAnswersProcessing userAnswersProcessing = new UserAnswersProcessing();
+    private final QuestionGenerator questionGenerator = new QuestionGenerator();
 
     public Scanner getInput() {
         return input;
@@ -19,41 +19,38 @@ public class QuizGenerator {
 
     /**
      * Метод для пошагового выполнения викторины с помощью вызовов
-     * {@link #askQuestions()},
+     * {@link #processingQuiz()},
      * {@link #resultForQuiz()},
      * {@link #displayAnswerStatistic()},
      * {@link #resetCounters()}
      */
     public void quiz() {
-        askQuestions();
+        processingQuiz();
         resultForQuiz();
         displayAnswerStatistic();
         resetCounters();
     }
 
     /**
-     * Метод для формирования массива из вопросов,
-     * по-одному передает вопросы в {@link #qenerateQuestion(Question question)},
-     * присваиваем значение счетчику общего количества вопросов {@link #countOfQuestions}
+     * Метод получает массив вопросов из {@link QuestionGenerator#formArrayOfQuestions()}
+     * по-одному передает вопросы в {@link #processingQuestions(Question question)}
      */
-    private void askQuestions() {
-        Question[] questionsArray = Question.values();
-        countOfQuestions = questionsArray.length;
-        for (int i = 0; i < questionsArray.length; i++) {
+    private void processingQuiz() {
+        Question[] arrayOfQuestions = questionGenerator.formArrayOfQuestions();
+
+        for (int i = 0; i < arrayOfQuestions.length; i++) {
             Question question = Question.values()[i];
-            qenerateQuestion(question);
+            processingQuestions(question);
         }
     }
 
     /**
-     * вывод вопроса на экран
-     * вызывает {@link #checkPlayerAnswers(Question quesyion)} для обработки ответа пользователя
-     * @param question - объект класса Question содержащий вопрос
+     * Печатает вопрос на экран {@link QuestionGenerator#printQuestion(Question)},
+     * обрабатывает ответ пользователя {@link #checkPlayerAnswers(Question)}
+     * @param question - объект Question содержащий вопрос и варианты ответа
      */
-    private void qenerateQuestion(Question question) {
-        question.printQuestion();
-        System.out.print("Введите номер ответа - ");
-
+    private void processingQuestions(Question question) {
+        questionGenerator.printQuestion(question);
         checkPlayerAnswers(question);
     }
 
@@ -62,7 +59,7 @@ public class QuizGenerator {
      * если есть то вызывается {@link UserAnswersProcessing#saveAnswers(int answer, Question question)}
      * для сохранения ответа в ArrayList
      *
-     * @param question - объект класса Question содержащий вопрос
+     * @param question - объект класса Question содержащий вопрос и варианты ответа
      */
     private void checkPlayerAnswers(Question question) {
         while (true) {
@@ -85,7 +82,7 @@ public class QuizGenerator {
      */
     private void resultForQuiz() {
         System.out.println("\n Конец!");
-        int countOfCorrect = userAnswersProcessing.getCountOfCorrect();
+        int countOfCorrect = userAnswersProcessing.getCountOfCorrectAnswers();
         System.out.println("\nИтого верных ответов - " + countOfCorrect);
         switch (countOfCorrect) {
             case 3:
@@ -106,8 +103,8 @@ public class QuizGenerator {
      * @return % правильных ответов
      */
     private int calculatePercentOfTrueAnswers() {
-        int countOfAllQuestions = getCountOfQuestions();
-        int countOfCorrectAnswers = userAnswersProcessing.getCountOfCorrect();
+        int countOfAllQuestions = questionGenerator.getCountOfQuestions();
+        int countOfCorrectAnswers = userAnswersProcessing.getCountOfCorrectAnswers();
         return (countOfCorrectAnswers * 100 / countOfAllQuestions);
     }
 
@@ -130,13 +127,6 @@ public class QuizGenerator {
     private void resetCounters() {
         userAnswersProcessing.clearArrayListWithPlayerAnswers();
         userAnswersProcessing.resetCountOfCorrect();
-    }
-
-    /**
-     * @return возвращает общее количество вопросов заданных пользователю
-     */
-    private int getCountOfQuestions() {
-        return countOfQuestions;
     }
 
     /**

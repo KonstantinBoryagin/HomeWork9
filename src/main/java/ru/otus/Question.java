@@ -63,10 +63,19 @@ public enum Question {
     }
 
     /**
+     * Получает значение поля {@link #question}
+     * @return вопрос
+     */
+    public String getQuestion() {
+        return question;
+    }
+
+    /**
      * Получает массив вариантов ответов {@link #answerOptions}
      * @return массив с вариантами ответа на вопрос
      */
     public String[] getAnswerOptions() {
         return answerOptions;
     }
+
 }
