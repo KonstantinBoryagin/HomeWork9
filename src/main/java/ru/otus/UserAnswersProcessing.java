@@ -6,7 +6,7 @@ import java.util.ArrayList;
  *Класс для обработки ответов пользователя и создания ArrayList ответов
  */
 public class UserAnswersProcessing {
-    private static int countOfCorrect;
+    private int countOfCorrect;
     private ArrayList<String> answers = new ArrayList<>();
 
 
@@ -39,7 +39,7 @@ public class UserAnswersProcessing {
      * Получает значение поля {@link #countOfCorrect}
      * @return Значение количества правильных ответов пользователя
      */
-    public static int getCountOfCorrect() {
+    public int getCountOfCorrect() {
         return countOfCorrect;
     }
 
@@ -54,7 +54,7 @@ public class UserAnswersProcessing {
     /**
      * Обнуляем поле {@link #countOfCorrect} содержащее количество правильных ответов пользователя
      */
-    public static void resetCountOfCorrect() {
+    public void resetCountOfCorrect() {
         countOfCorrect = 0;
     }
 }

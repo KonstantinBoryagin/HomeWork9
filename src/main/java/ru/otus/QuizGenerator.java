@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class QuizGenerator {
     /** Поле - общее количество вопросов заданных пользователю */
     private int countOfQuestions;
-    /** Поле - имя пользователя заданное {@link #} */               //<-----------------------------------
+    /** Поле - имя пользователя, задется в методе {@link #setPlayerName(String)} */
     private String playerName;
     private final Scanner input = new Scanner(System.in);
     private final UserAnswersProcessing userAnswersProcessing = new UserAnswersProcessing();
@@ -107,7 +107,7 @@ public class QuizGenerator {
      */
     private int calculatePercentOfTrueAnswers() {
         int countOfAllQuestions = getCountOfQuestions();
-        int countOfCorrectAnswers = UserAnswersProcessing.getCountOfCorrect();
+        int countOfCorrectAnswers = userAnswersProcessing.getCountOfCorrect();
         return (countOfCorrectAnswers * 100 / countOfAllQuestions);
     }
 

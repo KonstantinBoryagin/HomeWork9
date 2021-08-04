@@ -6,17 +6,11 @@ package ru.otus;
  * @version 1.0
  */
 public class Quiz {
-    private static QuizGenerator quizGenerator;
-
-    private static void init(){
-        quizGenerator = new QuizGenerator();
-    }
 
 
     public static void main(String[] args) {
 
-        /**Инициализация объектов классов QuizGenerator и QuizService */
-        init();
+        QuizGenerator quizGenerator = new QuizGenerator();
 
         System.out.println("Добро пожаловать! Введите Ваше имя что бы начать!");
 
