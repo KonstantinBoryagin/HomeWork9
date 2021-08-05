@@ -6,7 +6,9 @@ import java.util.ArrayList;
  *Класс для обработки ответов пользователя и создания ArrayList ответов
  */
 public class UserAnswersProcessing {
+    /** Количество правильных ответов */
     private int countOfCorrectAnswers;
+    /** ArrayList с вопросами */
     private final ArrayList<String> answers = new ArrayList<>();
 
 

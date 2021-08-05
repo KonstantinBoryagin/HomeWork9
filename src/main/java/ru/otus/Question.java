@@ -31,22 +31,6 @@ public enum Question {
     }
 
     /**
-     * Метод для вывода вариантов ответов (в 2 столбца)
-     */
-    public void printQuestion() {
-        System.out.println("\n" + question);
-        int formatOutput = 0;
-        for (int i = 0; i < answerOptions.length; i++) {
-            System.out.printf("%3d"+ ". " + "%-20s", (i + 1), answerOptions[i]);
-            formatOutput++;
-            if (formatOutput % 2 == 0) {
-                System.out.println();
-            }
-        }
-        System.out.println();
-    }
-
-    /**
      * Метод получает значение размера массива {@link #answerOptions}
      * @return возвращает размер массива с вариантами ответов
      */
