@@ -18,7 +18,5 @@ public class QuizGeneratorTest {
     public void setPlayerName() {
     }
 
-    @Test
-    public void getPlayerName() {
-    }
+
 }
