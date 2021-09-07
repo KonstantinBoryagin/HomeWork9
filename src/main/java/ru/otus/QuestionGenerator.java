@@ -38,7 +38,7 @@ public class QuestionGenerator {
     }
 
     /**
-     * Возвращает количество заданых вопросов
+     * Возвращает количество заданных вопросов
      * @return  количество вопросов заданных пользователю
      */
     public int getCountOfQuestions() {

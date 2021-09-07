@@ -7,7 +7,7 @@ import java.util.Scanner;
  */
 public class QuizGenerator {
 
-    /** Поле - имя пользователя, задется в методе {@link #setPlayerName(String)} */
+    /** Поле - имя пользователя, задается в методе {@link #setPlayerName(String)} */
     private String playerName;
     private final Scanner input = new Scanner(System.in);
     private final UserAnswersProcessing userAnswersProcessing = new UserAnswersProcessing();
@@ -70,7 +70,6 @@ public class QuizGenerator {
                     return;
                 }
                 System.out.println("Такого варианта ответа нет, введите номер ответа еще раз!");
-                continue;
             } else {
                 System.out.println(input.next() + " - это даже не цифра, давайте попробуем еще раз!");
             }

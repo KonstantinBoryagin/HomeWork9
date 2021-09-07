@@ -11,7 +11,6 @@ public class UserAnswersProcessing {
     /** ArrayList с вопросами */
     private final ArrayList<String> answers = new ArrayList<>();
 
-
     /**
      *  Проверка на правильность ответа данного пользователем и дальнейшая его запись в ArrayList с ответами.
      *  Инкриминирует счетчик правильных ответов {@link #countOfCorrectAnswers}
@@ -31,7 +30,7 @@ public class UserAnswersProcessing {
      * Вывод в консоль ArrayList с правильными и ошибочными ответами пользователями (с указанием верных)
      */
     public void outputStatisticOfResponses() {
-        System.out.println("");
+        System.out.println();
         for (int i = 0; i < answers.size(); i++) {
             System.out.println((i + 1) + "-й вопрос: " + answers.get(i));
         }
