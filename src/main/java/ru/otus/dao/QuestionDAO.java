@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class QuestionDAO {
 
-//    private final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
+    //    private final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
     private final static String QUERY_COUNTER = "SELECT idquestions FROM questions";
     private final static String QUERY_QUESTION = "select question, true_answer, answer " +
             "FROM questions INNER JOIN answer ON questions.idquestions = answer.id_question " +
@@ -39,6 +39,7 @@ public class QuestionDAO {
 
     /**
      * Получает общее количество вопрос из БД
+     *
      * @return количество вопросов
      */
     public int getCounter() {
@@ -46,7 +47,7 @@ public class QuestionDAO {
         try (Connection conn = getNewConnection();
              Statement stmt = conn.createStatement()) {
             ResultSet res = stmt.executeQuery(QUERY_COUNTER);
-            while(res.next()){
+            while (res.next()) {
                 counter++;
             }
         } catch (SQLException throwables) {
@@ -58,6 +59,7 @@ public class QuestionDAO {
     /**
      * Формирует массив вопросов
      * {@link Question#Question(int, String, List)}
+     *
      * @return массив вопросов
      */
     public Question[] getQuestions() {
@@ -65,9 +67,9 @@ public class QuestionDAO {
         Question[] questions = new Question[counter];
 
         try (Connection conn = getNewConnection();
-            PreparedStatement stmt = conn.prepareStatement(QUERY_QUESTION)){
+             PreparedStatement stmt = conn.prepareStatement(QUERY_QUESTION)) {
             for (int i = 0; i < counter; i++) {
-                questions[i] = getQuestion(i + 1);
+                questions[i] = getQuestion(stmt, i + 1);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -77,19 +79,19 @@ public class QuestionDAO {
 
     /**
      * Получает вопрос из БД
+     *
      * @param parameter - номер нужного вопроса
      * @return - вопрос {@link Question#Question(int, String, List)}
      */
-    public Question getQuestion(int parameter) {
+    public Question getQuestion(PreparedStatement stmt, int parameter) {
         List<String> answers = new ArrayList<>();
         String questionString = "";
         int trueAnswer = -1;
 
-        try (Connection conn = getNewConnection();
-            PreparedStatement stmt = conn.prepareStatement(QUERY_QUESTION)){
+        try {
             stmt.setInt(1, parameter);
             ResultSet result = stmt.executeQuery();
-            while(result.next()) {
+            while (result.next()) {
                 questionString = result.getString("question");
                 trueAnswer = result.getInt("true_answer");
                 answers.add(result.getString("answer"));
@@ -98,7 +100,8 @@ public class QuestionDAO {
             e.printStackTrace();
         }
 
-        Question question = new Question(trueAnswer, questionString,answers);
+
+        Question question = new Question(trueAnswer, questionString, answers);
         return question;
     }
 
