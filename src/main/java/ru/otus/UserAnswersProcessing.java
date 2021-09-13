@@ -1,5 +1,7 @@
 package ru.otus;
 
+import ru.otus.model.Question;
+
 import java.util.ArrayList;
 
 /**
@@ -19,10 +21,10 @@ public class UserAnswersProcessing {
      */
     public void saveAnswers(int answer, Question question) {
         if (answer == question.getCorrectAnswer()) {
-            answers.add("правильно - " + "\"" + question.getAnswerOptions()[question.getCorrectAnswer() - 1] + "\"");
+            answers.add("правильно - " + "\"" + question.getAnswerForIndex(question.getCorrectAnswer() - 1) + "\"");
             countOfCorrectAnswers++;
         } else {
-            answers.add("ошибка. Правильный ответ - " + "\"" + question.getAnswerOptions()[question.getCorrectAnswer() - 1] + "\"");
+            answers.add("ошибка. Правильный ответ - " + "\"" + question.getAnswerForIndex(question.getCorrectAnswer() - 1)  + "\"");
         }
     }
 

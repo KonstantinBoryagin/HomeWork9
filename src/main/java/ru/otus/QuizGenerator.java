@@ -1,5 +1,7 @@
 package ru.otus;
 
+import ru.otus.model.Question;
+
 import java.util.Scanner;
 
 /**
@@ -39,7 +41,7 @@ public class QuizGenerator {
         Question[] arrayOfQuestions = questionGenerator.formArrayOfQuestions();
 
         for (int i = 0; i < arrayOfQuestions.length; i++) {
-            Question question = Question.values()[i];
+            Question question = arrayOfQuestions[i];
             processingQuestions(question);
         }
     }
@@ -65,7 +67,8 @@ public class QuizGenerator {
         while (true) {
             if (input.hasNextInt()) {
                 int playerAnswer = input.nextInt();
-                if (playerAnswer > 0 && playerAnswer <= question.answerOptionsLength()) {
+                int size = question.getAnswersSize();
+                if (playerAnswer > 0 && playerAnswer <= size) {
                     userAnswersProcessing.saveAnswers(playerAnswer, question);
                     return;
                 }
@@ -83,20 +86,9 @@ public class QuizGenerator {
         System.out.println("\n Конец!");
         int countOfCorrect = userAnswersProcessing.getCountOfCorrectAnswers();
         System.out.println("\nИтого верных ответов - " + countOfCorrect);
-        switch (countOfCorrect) {
-            case 3:
-                System.out.println(playerName + ", отлично, на " + calculatePercentOfTrueAnswers() + "% правильно");
-                break;
-            case 2:
-                System.out.println(playerName + ", хорошо, на " + calculatePercentOfTrueAnswers() + "% правильно");
-                break;
-            case 1:
-                System.out.println(playerName + ", ужасно, на " + calculatePercentOfTrueAnswers() + "% правильно");
-                break;
-            default:
-                System.out.println(playerName + ", не отчаивайтесь");
-        }
+        System.out.println(playerName + ", отлично, на " + calculatePercentOfTrueAnswers() + "% правильно");
     }
+
     /**
      * Возвращает % правильных ответов в викторине
      * @return % правильных ответов

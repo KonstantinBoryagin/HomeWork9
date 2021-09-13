@@ -3,18 +3,18 @@ package ru.otus.model;
 import java.util.List;
 
 public class Question {
-    private int trueAnswer;
+    private int correctAnswer;
     private String question;
     private List<String> answers;
 
-    public Question(int trueAnswer, String question, List<String> answers) {
-        this.trueAnswer = trueAnswer;
+    public Question(int correctAnswer, String question, List<String> answers) {
+        this.correctAnswer = correctAnswer;
         this.question = question;
         this.answers = answers;
     }
 
-    public int getTrueAnswer() {
-        return trueAnswer;
+    public int getCorrectAnswer() {
+        return correctAnswer;
     }
 
     public String getQuestion() {
@@ -23,5 +23,14 @@ public class Question {
 
     public List<String> getAnswers() {
         return answers;
+    }
+
+    public String getAnswerForIndex(int index) {
+        String answer = answers.get(index);
+        return answer;
+    }
+
+    public int getAnswersSize() {
+        return answers.size();
     }
 }

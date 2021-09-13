@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuestionGenerator {
+public class QuestionDAO {
 
     private final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
     private final static String QUERY_COUNTER = "SELECT idquestions FROM questions";
@@ -45,7 +45,22 @@ public class QuestionGenerator {
         return counter;
     }
 
-    public Question getQuestion(int parameter) throws SQLException {
+    public Question[] getQuestions() {
+        int counter = getCounter();
+        Question[] questions = new Question[counter];
+
+        try (Connection conn = getNewConnection();
+            PreparedStatement stmt = conn.prepareStatement(QUERY_QUESTION)){
+            for (int i = 0; i < counter; i++) {
+                questions[i] = getQuestion(i + 1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return questions;
+    }
+
+    public Question getQuestion(int parameter) {
         List<String> answers = new ArrayList<>();
         String questionString = "";
         int trueAnswer = -1;
@@ -59,6 +74,8 @@ public class QuestionGenerator {
                 trueAnswer = result.getInt("true_answer");
                 answers.add(result.getString("answer"));
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
         Question question = new Question(trueAnswer, questionString,answers);

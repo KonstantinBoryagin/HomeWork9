@@ -1,13 +1,18 @@
 package ru.otus;
 
+import ru.otus.dao.QuestionDAO;
+import ru.otus.model.Question;
+
+import java.util.List;
+
 /**
- * Класс автоматически формирует вопросы получаемые из перечисления
- * @see Question#Question(int correctAnswer, String question, String[] answerOptions)  ;
+ * Класс формирует вопросы получаемые из базы данных
  */
 public class QuestionGenerator {
 
     /** Поле - общее количество вопросов заданных пользователю */
     private int countOfQuestions;
+    private QuestionDAO questionDAO = new QuestionDAO();
 
     /**
      * Формирует массив всех вопросов для викторины,
@@ -15,7 +20,7 @@ public class QuestionGenerator {
      * @return - массив всех вопросов с вариантами ответов
      */
     public Question[] formArrayOfQuestions() {
-        Question[] arrayOfQuestions = Question.values();
+        Question[] arrayOfQuestions = questionDAO.getQuestions();
         countOfQuestions = arrayOfQuestions.length;
         return arrayOfQuestions;
     }
@@ -27,8 +32,10 @@ public class QuestionGenerator {
     public void printQuestion(Question question) {
         System.out.println("\n" + question.getQuestion());
         int formatOutput = 0;
-        for (int i = 0; i < question.answerOptionsLength(); i++) {
-            System.out.printf("%3d"+ ". " + "%-20s", (i + 1), question.getAnswerOptions()[i]);
+        int size = question.getAnswersSize();
+        List<String> answers = question.getAnswers();
+        for (int i = 0; i < size; i++) {
+            System.out.printf("%3d"+ ". " + "%-20s", (i + 1), answers.get(i));
             formatOutput++;
             if (formatOutput % 2 == 0) {
                 System.out.println();
