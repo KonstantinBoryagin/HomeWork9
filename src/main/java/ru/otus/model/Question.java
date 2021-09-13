@@ -2,6 +2,9 @@ package ru.otus.model;
 
 import java.util.List;
 
+/**
+ * Шаблон для вопроса
+ */
 public class Question {
     private int correctAnswer;
     private String question;

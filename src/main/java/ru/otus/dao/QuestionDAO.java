@@ -6,6 +6,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Класс получает вопросы из MySQL
+ */
 public class QuestionDAO {
 
 //    private final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";

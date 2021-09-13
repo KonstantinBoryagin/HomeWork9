@@ -26,7 +26,7 @@ public class QuestionGenerator {
     }
 
     /**
-     * Форматирует и выводит на экран вопрос и варинты ответа
+     * Форматирует и выводит на экран вопрос и варианты ответа
      * @param question - содержит вопрос и варианты ответа
      */
     public void printQuestion(Question question) {
