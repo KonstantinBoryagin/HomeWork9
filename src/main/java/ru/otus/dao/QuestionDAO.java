@@ -8,22 +8,25 @@ import java.util.List;
 
 public class QuestionDAO {
 
-    private final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
+//    private final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
     private final static String QUERY_COUNTER = "SELECT idquestions FROM questions";
     private final static String QUERY_QUESTION = "select question, true_answer, answer " +
             "FROM questions INNER JOIN answer ON questions.idquestions = answer.id_question " +
             "WHERE id_question = ?";
 
-    public void run() {
-        try {
-            Class.forName(DRIVER_NAME);
-        } catch (ClassNotFoundException e) {
-            System.out.println("Can't get class. No driver found");
-            e.printStackTrace();
-            return;
-        }
-    }
+//    public void run() {
+//        try {
+//            Class.forName(DRIVER_NAME);
+//        } catch (ClassNotFoundException e) {
+//            System.out.println("Can't get class. No driver found");
+//            e.printStackTrace();
+//            return;
+//        }
+//    }
 
+    /**
+     * Устанавливает соединение с MySQL
+     */
     public Connection getNewConnection() throws SQLException {
         String connectionString = "jdbc:mysql://127.0.0.1:3306/quiz";
         String login = "root";
@@ -31,6 +34,10 @@ public class QuestionDAO {
         return DriverManager.getConnection(connectionString, login, password);
     }
 
+    /**
+     * Получает общее количество вопрос из БД
+     * @return количество вопросов
+     */
     public int getCounter() {
         int counter = 0;
         try (Connection conn = getNewConnection();
@@ -45,6 +52,11 @@ public class QuestionDAO {
         return counter;
     }
 
+    /**
+     * Формирует массив вопросов
+     * {@link Question#Question(int, String, List)}
+     * @return массив вопросов
+     */
     public Question[] getQuestions() {
         int counter = getCounter();
         Question[] questions = new Question[counter];
@@ -60,6 +72,11 @@ public class QuestionDAO {
         return questions;
     }
 
+    /**
+     * Получает вопрос из БД
+     * @param parameter - номер нужного вопроса
+     * @return - вопрос {@link Question#Question(int, String, List)}
+     */
     public Question getQuestion(int parameter) {
         List<String> answers = new ArrayList<>();
         String questionString = "";
