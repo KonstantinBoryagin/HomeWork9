@@ -1,29 +1,19 @@
 package ru.otus;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class QuestionDB {
-    private final String driverName = "com.mysql.cj.jdbc.Driver";
-//    private final String connectionString = "jdbc:mysql://127.0.0.1:3306/quiz";
-//    private final String login = "root";
-//    private final String password = "Idontknow89";
+    private final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
 
     public void run() {
         try {
-            Class.forName(driverName);
+            Class.forName(DRIVER_NAME);
         } catch (ClassNotFoundException e) {
             System.out.println("Can't get class. No driver found");
             e.printStackTrace();
             return;
         }
-        try {
-            getNewConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+
 //        Connection connection;
 //        try {
 //            connection = DriverManager.getConnection(connectionString, login, password);

@@ -1,5 +1,8 @@
 package ru.otus;
 
+import ru.otus.dao.QuestionGenerator;
+import ru.otus.model.Question;
+
 import java.sql.SQLException;
 
 /**
@@ -13,12 +16,15 @@ public class Quiz {
     public static void main(String[] args) throws SQLException {
         QuestionDB app = new QuestionDB();
         QuestionGeneratorDB db = new QuestionGeneratorDB(app.getNewConnection());
-        app.run();
-        try {
-            db.getAnswers();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        QuestionGenerator questionGenerator = new QuestionGenerator();
+        //app.run();
+            System.out.println(questionGenerator.getCounter());
+           // db.getAnswers();
+        Question q1 = questionGenerator.getQuestion(1);
+        System.out.println(q1.getQuestion());
+        System.out.println(q1.getTrueAnswer());
+        System.out.println(q1.getAnswers());
+
 
 
 //        QuizGenerator quizGenerator = new QuizGenerator();
