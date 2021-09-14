@@ -2,7 +2,11 @@ package ru.otus;
 
 
 
+import ru.otus.dao.QuestionDAO;
+import ru.otus.model.Question;
+
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * "Викторина"

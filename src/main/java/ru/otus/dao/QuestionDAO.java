@@ -33,7 +33,7 @@ public class QuestionDAO {
     public Connection getNewConnection() throws SQLException {
         String connectionString = "jdbc:mysql://127.0.0.1:3306/quiz";
         String login = "root";
-        String password = "Idontknow89";
+        String password = "123";
         return DriverManager.getConnection(connectionString, login, password);
     }
 
@@ -100,10 +100,27 @@ public class QuestionDAO {
             e.printStackTrace();
         }
 
-
         Question question = new Question(trueAnswer, questionString, answers);
         return question;
     }
+
+//    public List<Question> getQuestions1() {
+//        List<Question> questions = new ArrayList<>();
+//
+//        try (Connection conn = getNewConnection();
+//             PreparedStatement stmt = conn.prepareStatement(QUERY_QUESTION)) {
+//            int counter = 1;
+//            stmt.setInt(1, counter);
+//            ResultSet res = stmt.executeQuery();
+//            while (res.next()) {
+//                questions.add(getQuestion(stmt, counter));
+//                counter++;
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return questions;
+//    }
 
 }
 
