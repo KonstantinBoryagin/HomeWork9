@@ -33,6 +33,15 @@ public class Question {
         return answer;
     }
 
+    @Override
+    public String toString() {
+        return "Question{" +
+                "correctAnswer=" + correctAnswer +
+                ", question='" + question + '\'' +
+                ", answers=" + answers +
+                '}';
+    }
+
     public int getAnswersSize() {
         return answers.size();
     }
