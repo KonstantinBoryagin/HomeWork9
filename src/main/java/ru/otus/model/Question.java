@@ -2,6 +2,9 @@ package ru.otus.model;
 
 import java.util.List;
 
+/**
+ * Шаблон для вопроса
+ */
 public class Question {
     private int correctAnswer;
     private String question;
@@ -28,6 +31,15 @@ public class Question {
     public String getAnswerForIndex(int index) {
         String answer = answers.get(index);
         return answer;
+    }
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "correctAnswer=" + correctAnswer +
+                ", question='" + question + '\'' +
+                ", answers=" + answers +
+                '}';
     }
 
     public int getAnswersSize() {

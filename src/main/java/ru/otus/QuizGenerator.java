@@ -2,6 +2,7 @@ package ru.otus;
 
 import ru.otus.model.Question;
 
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -34,14 +35,14 @@ public class QuizGenerator {
     }
 
     /**
-     * Метод получает массив вопросов из {@link QuestionGenerator#formArrayOfQuestions()}
+     * Метод получает массив вопросов из {@link QuestionGenerator#formListOfQuestions()}
      * по-одному передает вопросы в {@link #processingQuestions(Question question)}
      */
     private void processingQuiz() {
-        Question[] arrayOfQuestions = questionGenerator.formArrayOfQuestions();
+        List<Question> questions = questionGenerator.formListOfQuestions();
 
-        for (int i = 0; i < arrayOfQuestions.length; i++) {
-            Question question = arrayOfQuestions[i];
+        for (int i = 0; i < questions.size(); i++) {
+            Question question = questions.get(i);
             processingQuestions(question);
         }
     }

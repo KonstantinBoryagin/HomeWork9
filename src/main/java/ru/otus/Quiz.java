@@ -2,17 +2,22 @@ package ru.otus;
 
 
 
+import ru.otus.dao.QuestionDAO;
+import ru.otus.model.Question;
+
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * "Викторина"
  * @author Konstantin Boryagin
- * @version 1.0
+ * @version 2.0
  */
 public class Quiz {
 
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) {
 
         QuizGenerator quizGenerator = new QuizGenerator();
 

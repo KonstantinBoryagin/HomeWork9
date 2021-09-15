@@ -19,14 +19,14 @@ public class QuestionGenerator {
      * присваиваем значение счетчику общего количества вопросов {@link #countOfQuestions}
      * @return - массив всех вопросов с вариантами ответов
      */
-    public Question[] formArrayOfQuestions() {
-        Question[] arrayOfQuestions = questionDAO.getQuestions();
-        countOfQuestions = arrayOfQuestions.length;
-        return arrayOfQuestions;
+    public List<Question> formListOfQuestions() {
+        List<Question> questions = questionDAO.getQuestions();
+        countOfQuestions = questions.size();
+        return questions;
     }
 
     /**
-     * Форматирует и выводит на экран вопрос и варинты ответа
+     * Форматирует и выводит на экран вопрос и варианты ответа
      * @param question - содержит вопрос и варианты ответа
      */
     public void printQuestion(Question question) {
